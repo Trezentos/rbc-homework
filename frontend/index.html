@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBC</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="./script.js" ></script>
+</head>
+<body>
+    <div id="container">
+        <div class="content">
+            <div class="header">
+                <h3>Escolha as peças do seu computador para buscar no banco os computadores disponiveis</h3>
+            </div>
+            <div class="parts-content" >
+                <h3>Processador</h3>
+                <form id="formValues">
+                    <select name="processador" id="processador">
+                        <option value="Celeron">Celeron</option>
+                        <option value="Pentium">Pentium</option>
+                        <option value="I3">I3</option>
+                        <option value="I5">I5</option>
+                        <option value="I7">I7</option>
+                        <option value="I9">I9</option>
+                      </select>
+                      <h3>Memória Ram</h3>
+                    <select name="memoriaRam" id="memoriaRam">
+                        <option value="4GB">4GB</option>
+                        <option value="8GB">8GB</option>
+                        <option value="16GB">16GB</option>
+                        <option value="32GB">32GB</option>
+                      </select>
+                      <h3>Disco</h3>
+                      <select name="disco" id="disco">
+                          <option value="200GB">200GB</option>
+                          <option value="500GB">500GB</option>
+                          <option value="1TB">1TB</option>
+                          <option value="2TB">2TB</option>
+                          
+                        </select>
+                        <h3>Placa de Video</h3>
+                        <select name="placaDeVideo" id="placaDeVideo">
+                            <option value="Interna">Interna</option>
+                            <option value="GTX 1050">GTX 1050</option>
+                            <option value="GTX 1650">GTX 1650</option>
+                            <option value="RTX 2060">RTX 2060</option>
+                            <option value="RTX 3080">RTX 3080</option>
+                        </select></br>
+                        <button id="searchBtn">Procurar</button>
+                </form>
+            </div>
+        </div>
+        <div class="computers-content">
+            <div class="header-pc-content">
+                <h3>Computadores disponíveis</h3>
+            </div>
+            <div class="available-computers">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
