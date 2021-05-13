@@ -63,6 +63,7 @@ body #container {
     display: flex;
     justify-content: center;
     padding: 10px 25px;
+    margin-top: 30px;
 }
 
 body #container .content{
@@ -150,8 +151,30 @@ body #container .computers-content .available-computers .pc-card {
     margin-bottom: 5px;
 }
 
+body #container .computers-content .available-computers .pc-card h3 {
+    color: deepskyblue;
+}
+
 body #container .computers-content .available-computers .pc-card .content p {
     color: white;
+}
+
+.compatibility{
+    color:green;
+}
+
+.computador-escolhido {
+    position: absolute;
+    top: 0;
+    border: 1px solid deepskyblue;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+
+}
+
+.computador-escolhido h3{
+    color: deepskyblue;
 }
 
 

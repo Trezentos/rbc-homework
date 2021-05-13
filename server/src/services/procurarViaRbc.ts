@@ -1,8 +1,9 @@
 import gerarTabelaDeComparacao from './gerarTabelaDeComparacao';
 const tabelaProcessadores = gerarTabelaDeComparacao(['Celeron', 'Pentium', 'I3', 'I5', 'I7', 'I9'], 0.3)
 const tabelaMemoriasRam = gerarTabelaDeComparacao(['4GB', '8GB', '16GB', '32GB'], 0.4)
-const tabelaDiscos = gerarTabelaDeComparacao(['200GB', '500GB', '1TB', '2GB'], 0.6)
-const tabelaPlacaDeVideo = gerarTabelaDeComparacao(['Interna', 'GTX 1050', 'GTX 1650', 'GTX 2060', 'RTX 3080'], 0.4)
+const tabelaDiscos = gerarTabelaDeComparacao(['200GB', '500GB', '1TB', '2TB'], 0.6)
+const tabelaPlacaDeVideo = gerarTabelaDeComparacao(['Interna', 'GTX 1050', 'GTX 1650', 'RTX 2060', 'RTX 3080'], 0.4)
+import db from '../db/firebase';
 
 
 interface IPcComponents {
@@ -17,26 +18,26 @@ interface AvailablePcs {
     memoriaRam: string,
     disco: string,
     placaDeVideo: string,
-    compatibilidade: number
+    nome:string;
 };
 
-const pcDisponiveis = [{
-    processador: 'I5',
-    memoriaRam: '8GB',
-    disco: '500GB',
-    placaDeVideo: 'GTX 1650',
-    compatibilidade: 0
-},
-{
-    processador: 'I7',
-    memoriaRam: '16GB',
-    disco: '1TB',
-    placaDeVideo: 'RTX 3080',
-    compatibilidade: 0
-}]
 
 
-export default function procurarViaRBC({ processador, memoriaRam, disco, placaDeVideo }: IPcComponents): AvailablePcs[] {
+export default async function  procurarViaRBC({ processador, memoriaRam, disco, placaDeVideo }: IPcComponents): Promise<AvailablePcs[]> {
+    const pcDisponiveis: any[] = [];
+
+    console.table(tabelaProcessadores);
+
+    const snapshot = await db.collection('computadores').get();
+    
+    snapshot.forEach((doc) => {
+        const newPc = doc.data();
+        pcDisponiveis.push({
+            ...newPc,
+            compatibilidade: 1,
+        })
+    });
+    
 
     const compatibilidades = pcDisponiveis.map(pcDisponivel => {
         const multProcessador = Number(tabelaProcessadores[processador][pcDisponivel.processador]);
@@ -52,6 +53,7 @@ export default function procurarViaRBC({ processador, memoriaRam, disco, placaDe
     }).sort((a,b)=>{
         return  b.compatibilidade - a.compatibilidade;
     })
+
 
     return compatibilidades;
     

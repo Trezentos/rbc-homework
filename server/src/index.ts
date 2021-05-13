@@ -6,13 +6,11 @@ app.use(express.json());
 app.use(cors());
 
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
 
     const { processador, placaDeVideo, disco, memoriaRam } = req.body;
 
-    const computadores = procurarViaRBC({ processador, placaDeVideo, memoriaRam, disco });
-
-    console.log(computadores);
+    const computadores = await procurarViaRBC({ processador, placaDeVideo, memoriaRam, disco });
 
     return res.json(computadores);
 })

@@ -1,0 +1,9 @@
+instalar o nodeJs
+instalar o npm
+ir na pasta raiz do fronted e backend (as pastas)
+rodar um npm install tanto no frontend e backend no terminal (na raiz do backend e front)
+baixar a extensão no VsCode -> live server
+ir no frontend e clicar com o direito no index.html e clicar na opção que aparece o liver server
+ir no backend e rodar um "npm dev:server" no terminal
+
+e assim estará tudo ok pra interagir com a página que foi aberta no liveserveer

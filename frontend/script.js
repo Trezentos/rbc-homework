@@ -1,4 +1,5 @@
 const searchBtn = document.querySelector('#searchBtn')
+const body = document.querySelector('body');
 const datas = document.querySelector('#formValues');
 const contentBox = document.querySelector('.content');
 const computerContentBox = document.querySelector('.computers-content');
@@ -23,29 +24,47 @@ searchBtn.addEventListener('click', async (e) => {
             },
     });
 
-    const PcDatas = await response.json();
+    const pcDatas = await response.json();
 
-    if (PcDatas) {
+    console.log(pcDatas);
+
+    if (pcDatas) {
         contentBox.style.display = 'none';
         computerContentBox.style.display = 'block'
 
-        PcDatas.forEach((Pcdata, index)=>{
+        
+
+        pcDatas.forEach((pcData, index)=>{
             availableComputers.innerHTML+=
             `
+            
                 <div class="pc-card">
                     <div class="header">
-                                    <h3>Computador ${index + 1}</h3>
+                        <h3>Computador ${pcData.nome}</h3>
                                     
                     </div>
                     <div class="pc-content">
-                        <p>Processador: ${Pcdata.processador}</p>
-                        <p>Memória Ram: ${Pcdata.memoriaRam}</p>
-                        <p>Disco: ${Pcdata.disco}</p>
-                        <p>Placa de Video: ${Pcdata.placaDeVideo}</p>
-                        <p>Compatibilidade: ${Pcdata.compatibilidade}</p>
+                        <p>Processador: ${pcData.processador}</p>
+                        <p>Memória Ram: ${pcData.memoriaRam}</p>
+                        <p>Disco: ${pcData.disco}</p>
+                        <p>Placa de Video: ${pcData.placaDeVideo}</p>
+                        <p style="color:${pcData.compatibilidade > 0.7 ? "green": "red"}" >
+                        Compatibilidade: ${pcData.compatibilidade*100}%</p>
                     </div>
                 </div>
             `
         })
+
+        
+        body.innerHTML += `
+        <div class="computador-escolhido">
+                <h3>Partes do pc escolhido</h3>
+                <p>Processador: ${processador}</p>
+                <p>memoria ram: ${memoriaRam}</p>
+                <p>disco: ${disco}</p>
+                <p>placa de video: ${placaDeVideo}</p>
+                <a href="/" >Voltar</a>
+        </div>
+        `
     }
 })
